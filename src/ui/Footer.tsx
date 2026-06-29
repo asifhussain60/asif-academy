@@ -83,6 +83,12 @@ export function Footer({
           </div>
         )}
         <div className="flex items-center gap-2">
+          <span
+            title="Slide number — use this to reference slides"
+            className="rounded border border-border px-1.5 py-0.5 font-mono text-xs tabular-nums text-fg-muted select-none"
+          >
+            #{slideNo}
+          </span>
           <select
             value={slideNo}
             onChange={(e) => {

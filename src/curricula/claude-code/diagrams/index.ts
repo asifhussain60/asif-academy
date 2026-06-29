@@ -16,6 +16,7 @@ import { PlanModeFlowDiagram } from './PlanModeFlowDiagram';
 import { AssistantPipelineDiagram } from './AssistantPipelineDiagram';
 import { SkillTriggerDiagram } from './SkillTriggerDiagram';
 import { SdkVsInteractiveDiagram } from './SdkVsInteractiveDiagram';
+import { PermissionModesDiagram } from './PermissionModesDiagram';
 
 /**
  * Diagram components owned by the claude-code tutorial. Registered into the runtime registry at
@@ -37,6 +38,7 @@ export const claudeCodeDiagrams: Record<string, ComponentType<DiagramProps>> = {
   'assistant-pipeline': AssistantPipelineDiagram,
   'skill-trigger': SkillTriggerDiagram,
   'sdk-vs-interactive': SdkVsInteractiveDiagram,
+  'permission-modes': PermissionModesDiagram,
   // Phase C stubs
   'decision-matrix': PlaceholderDiagram,
   'mcp-client-server': PlaceholderDiagram,
