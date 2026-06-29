@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ADMIN_EMAIL } from '@/auth/admin';
+import { useHasRole } from '@/auth/useRoles';
 import type { Tutorial, SlideCtx } from '@/engine/types';
 import {
   firstPosition,
@@ -33,6 +34,7 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
   const store = useDeck();
   const { user } = useAuth0();
   const isAdmin = user?.email === ADMIN_EMAIL;
+  const isPresenter = isAdmin || useHasRole('presenter');
 
   const pos: Position = {
     moduleId: params.moduleId ?? '',
@@ -131,7 +133,7 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
     toggleTheme: store.toggleTheme,
     toggleSidebar: store.toggleSidebar,
     toggleQa: store.toggleQa,
-    toggleNotes: store.toggleNotes,
+    toggleNotes: isPresenter ? store.toggleNotes : () => {},
     openPresenter,
     toggleOverlay: () => store.setQa(false),
     escape: () => {
@@ -186,7 +188,7 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
               <SlideRenderer slide={slide} ctx={ctx} />
             </DeckControlsProvider>
             <QaPanel faqs={slide.faqs} open={qaOpen} />
-            <TalkingPointsPanel slide={slide} open={notesOpen} step={step} onGoToStep={goToStep} />
+            {isPresenter && <TalkingPointsPanel slide={slide} open={notesOpen} step={step} onGoToStep={goToStep} />}
           </main>
           <Footer
             slideNo={globalSlideNumber(tutorial, pos)}
