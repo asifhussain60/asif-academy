@@ -19,7 +19,7 @@ export function Heading({
   return (
     <div>
       {question && (
-        <p className="mb-2 font-question text-5xl md:text-6xl leading-tight text-accent-2">{question}</p>
+        <p className="mb-2 font-question text-3xl md:text-4xl leading-tight text-accent-2">{question}</p>
       )}
       <Tag
         className={clsx(
