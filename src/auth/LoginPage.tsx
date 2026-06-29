@@ -61,7 +61,7 @@ export function LoginPage() {
 
           <h1 style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontSize: 'clamp(2rem, 4vw, 2.5rem)',
             fontWeight: 700,
             color: 'var(--fg)',
             lineHeight: 1.1,
