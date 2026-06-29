@@ -5,6 +5,15 @@ An interactive, app-like presentation that teaches Claude Code. A reusable tutor
 `src/app`, `src/theme`) renders **data packages** under `src/curricula/<id>/`. Content is data; a new
 curriculum is a new folder + a registry line, with zero engine edits.
 
+## User management — MANDATORY standard
+
+When granting or revoking site access, assigning or removing the presenter role, or auditing
+who can log in, you MUST load:
+
+- **`.claude/skills/user-mgmt`** — Auth0 Action structure, credential locations, the two
+  access lists (`ALLOWED` / `PRESENTERS`), Python helper pattern, and invariants. All changes
+  go through the Action API — never the Auth0 dashboard.
+
 ## Authoring slides — MANDATORY standard
 
 When creating, splitting, or editing ANY slide or module content, you MUST follow these skills
