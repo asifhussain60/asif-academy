@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Claude Code, Taught — Interactive Tutorial</title>
+    <meta name="description" content="An interactive, app-like presentation that teaches Claude Code from the agentic loop to building real skills and agents." />
+    <script>
+      // FOUC-safe theme: apply saved theme before first paint. Defaults to dark.
+      (function () {
+        try {
+          var raw = localStorage.getItem('asif-academy');
+          var theme = 'dark';
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            var t = parsed && parsed.state && parsed.state.theme;
+            if (t === 'light' || t === 'dark') theme = t;
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

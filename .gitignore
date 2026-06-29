@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-ssr/
+
+# vite / tsc
+*.local
+.vite/
+*.tsbuildinfo
+
+# visual-QA throwaway (created/deleted by the QA loop)
+.visual-qa/
+
+# editor / OS
+.DS_Store
+*.log
+
+# Presenter talking-point edits (dev write-back; folded into lessons.ts manually)
+talkingpoints.overrides.json

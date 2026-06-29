@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+
+/*
+  Theme tokens. Strategy: register semantic colors in @theme as var() references,
+  and switch the underlying raw values per [data-theme]. Because Tailwind v4 emits
+  each token as a CSS custom property, the chained var() resolves live at runtime —
+  so `bg-surface`, `text-fg`, `shadow-xl` all re-theme on toggle with zero JS.
+*/
+@theme {
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Friendly face for everyday analogies / asides — casual but readable. */
+  --font-friendly: 'Comic Neue', 'Comic Sans MS', ui-rounded, sans-serif;
+  /* Question voice — handwriting style, paired with --color-accent-2 amber. */
+  --font-question: 'Caveat Variable', 'Caveat', cursive;
+
+  /* Semantic colors → resolve to raw vars defined under [data-theme] below. */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-grid: var(--grid-line);
+
+  /* Radius scale (overrides Tailwind defaults used by rounded-*). */
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-lg: 0.8125rem;
+  --radius-xl: 1.25rem;
+
+  /* Elevation scale lifted from Unify / Material-Admin. */
+  --shadow-sm: 0 0.1875rem 0.375rem rgba(8, 12, 18, 0.4);
+  --shadow: 0 0.375rem 1.5rem rgba(8, 12, 18, 0.45);
+  --shadow-lg: 0 1rem 1.75rem rgba(8, 12, 18, 0.5);
+  --shadow-xl: 0 2.75rem 5.5rem -3.5rem rgba(0, 0, 0, 0.65), 0 2rem 4rem -2rem rgba(0, 0, 0, 0.55);
+
+  /* Motion. */
+  --ease-base: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-pulse-soft: pulse-soft 2.6s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+/* ---- Raw theme values ---------------------------------------------------- */
+:root,
+:root[data-theme='dark'] {
+  --bg: #0d1318;
+  --surface: #151e27;
+  --surface-2: #1e2a35;
+  --border: rgba(233, 238, 243, 0.09);
+  --fg: #e9eef3;
+  --fg-muted: #9fadb8;
+  --fg-subtle: #6f7c88;
+  --accent: #e0815c; /* warm clay/coral, brightened for the dark ground */
+  --accent-2: #d9a05b; /* amber companion for diagram emphasis */
+  --accent-soft: rgba(224, 129, 92, 0.15);
+  --accent-contrast: #1a0f07;
+  --grid-line: rgba(233, 238, 243, 0.045);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f7f3ee;
+  --surface: #ffffff;
+  --surface-2: #f1ece4;
+  --border: rgba(26, 23, 20, 0.12);
+  --fg: #221c18;
+  --fg-muted: #5c5048;
+  --fg-subtle: #8a7d72;
+  --accent: #c96442;
+  --accent-2: #b5832f;
+  --accent-soft: rgba(201, 100, 66, 0.1);
+  --accent-contrast: #ffffff;
+  --grid-line: rgba(26, 23, 20, 0.05);
+  color-scheme: light;
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--fg);
+}
+
+/* Tasteful scrollbars (sidebar / notes). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* ---- Keyframes (ambient diagram motion) ---------------------------------- */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Utility: faint dotted grid background for hero/section slides. */
+.bg-dotgrid {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Utility: subtle radial spotlight wash. */
+.bg-spotlight {
+  background:
+    radial-gradient(1200px 600px at 30% -10%, var(--accent-soft), transparent 60%),
+    var(--bg);
+}
+
+/* Highlighted key phrases inside read-aloud scripts / answers (bold + accent color). */
+.cc-hl strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Inline detail trigger: an underlined term that opens a tooltip/popover. */
+.cc-detail-mark {
+  display: inline;
+  font: inherit;
+  color: var(--accent);
+  cursor: help;
+  padding: 0;
+  background: none;
+  border: none;
+  text-decoration: underline dotted var(--accent);
+  text-underline-offset: 3px;
+  transition: background-color 0.15s var(--ease-base);
+  border-radius: 3px;
+}
+.cc-detail-mark:hover,
+.cc-detail-mark:focus-visible {
+  background: var(--accent-soft);
+  outline: none;
+}
+
