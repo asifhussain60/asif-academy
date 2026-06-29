@@ -140,9 +140,20 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
   const visitedCount = Object.keys(visited).filter((k) => k.startsWith(`${tutorial.id}/`)).length;
   const progressPct = Math.min(100, Math.round((visitedCount / slideTotal) * 100));
 
+  const t = tutorial.theme ?? {};
+  const themeVars = Object.fromEntries(
+    ([
+      ['--accent',       t.accent],
+      ['--accent-2',     t.accent2],
+      ['--font-display', t.fontDisplay],
+      ['--font-sans',    t.fontSans],
+      ['--font-mono',    t.fontMono],
+    ] as [string, string | undefined][]).filter(([, v]) => v !== undefined)
+  ) as React.CSSProperties;
+
   return (
     <TutorialProvider tutorial={tutorial}>
-      <div className="flex h-dvh w-full overflow-hidden bg-bg text-fg">
+      <div style={themeVars} className="flex h-dvh w-full overflow-hidden bg-bg text-fg">
         <Sidebar
           tutorial={tutorial}
           current={{ moduleId: pos.moduleId, lessonId: pos.lessonId }}
