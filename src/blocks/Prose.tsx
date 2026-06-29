@@ -17,7 +17,7 @@ export function Prose({
         'leading-relaxed text-fg-muted',
         size === 'sm' && 'text-base',
         size === 'base' && 'text-[1.15rem]',
-        size === 'lg' && 'text-[1.4rem] leading-relaxed text-fg',
+        size === 'lg' && 'text-[1.1rem] leading-relaxed text-fg',
       )}
     >
       {renderInline(md, details)}

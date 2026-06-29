@@ -16,21 +16,28 @@ export function Heading({
   details?: Record<string, DetailContent>;
 }) {
   const Tag = (`h${level}` as 'h1' | 'h2' | 'h3');
-  return (
-    <div>
-      {question && (
-        <p className="mb-2 font-question text-3xl md:text-4xl leading-tight text-accent-2">{question}</p>
+
+  const headingEl = (
+    <Tag
+      className={clsx(
+        'font-sans font-bold text-fg',
+        level === 1 && 'text-3xl md:text-4xl',
+        level === 2 && 'text-xl md:text-2xl',
+        level === 3 && 'text-lg md:text-xl',
       )}
-      <Tag
-        className={clsx(
-          'font-sans font-bold text-fg',
-          level === 1 && 'text-3xl md:text-4xl',
-          level === 2 && 'text-xl md:text-2xl',
-          level === 3 && 'text-lg md:text-xl',
-        )}
-      >
-        {renderInline(text, details)}
-      </Tag>
-    </div>
+    >
+      {renderInline(text, details)}
+    </Tag>
   );
+
+  if (question) {
+    return (
+      <div className="rounded-xl border border-border bg-surface/40 p-4 text-center shadow-sm">
+        <p className="mb-2 font-question text-[2.3rem] leading-tight text-accent-2">{question}</p>
+        {headingEl}
+      </div>
+    );
+  }
+
+  return <div>{headingEl}</div>;
 }
