@@ -337,7 +337,7 @@ export const lessons: Record<string, Lesson> = {
           },
           {
             q: 'Where do I actually put project rules?',
-            a: 'A `CLAUDE.md` at the repo root, committed to git. The whole team shares it, and it travels with the code.',
+            a: 'A `CLAUDE.md` at the repo root, committed to git. The whole team shares it, and it **travels with the code**.',
           },
           {
             q: 'What goes in it?',
@@ -349,7 +349,7 @@ export const lessons: Record<string, Lesson> = {
             'So how does Claude Code remember anything between sessions? The answer is refreshingly low-tech. It’s a plain Markdown file called **CLAUDE.md.**',
             'It reads that file automatically at the start of every session.',
             'Think of it as **the onboarding doc we’d hand a new teammate.** Our conventions, our commands, the traps to avoid.',
-            'Broadest layer first: **enterprise** scope, managed by the whole org.',
+            'The broadest layer is **enterprise** scope — managed centrally by IT, and it applies to everyone in the organisation.',
           ],
           [
             'What about our own personal preferences? That’s the next layer down: **user** scope.',
@@ -467,7 +467,7 @@ export const lessons: Record<string, Lesson> = {
           },
           {
             q: 'So learning to write commands is learning to write Skills?',
-            a: 'Exactly. That’s why this slide closes the Foundations module — it’s the hand-off into Skills, the heart of the tutorial.',
+            a: 'Exactly. **Learning slash commands is learning Skills** — that’s the hand-off from Foundations into the heart of the tutorial.',
           },
           {
             q: 'Where do custom commands live on disk?',
@@ -478,7 +478,7 @@ export const lessons: Record<string, Lesson> = {
           [
             'One last stop in Foundations, and it’s the fastest way to drive Claude Code. So what happens the moment we type a slash?',
             'We get a menu. First built-in: **/model.** Swap the model mid-task, speed versus depth, whenever we want.',
-            'Let’s walk down this menu one at a time.',
+            'Claude Code ships with a handful of built-ins that control the tool itself, and we can add as many of our own as we want.',
           ],
           [
             'Ever wonder what the agent is actually holding in its head right now? **/context** shows us exactly that.',
@@ -1069,6 +1069,7 @@ export const lessons: Record<string, Lesson> = {
         blocks: [
           { kind: 'heading', eyebrow: 'Skills · Lab', text: 'The description is the trigger — a vague one means the Skill never fires', question: 'What makes a Skill actually work?' },
           { kind: 'prose', size: 'lg', md: 'The `description` field is what the agent matches against. Write it as a sentence about **when** the Skill should load, not what it contains. A label never fires; a scenario does.' },
+          { kind: 'diagram', diagramId: 'skill-trigger', caption: "Label vs. scenario — one fires, one doesn't" },
           { kind: 'callout', tone: 'key', md: '**Bad:** `release-notes-tool`\n\n**Good:** `When asked to write release notes or a changelog from a set of merged pull requests.`' },
           { kind: 'widget', widgetId: 'build-a-skill' },
         ],
@@ -1570,6 +1571,66 @@ Return a structured list — no prose, no filler.`,
 }` },
         ],
       },
+      {
+        id: 'sp-2',
+        layout: 'center',
+        steps: 3,
+        estMinutes: 2,
+        background: 'grid',
+        details: {
+          enterprise: {
+            title: 'Enterprise scope',
+            icon: '🏢',
+            body: 'Admin-managed settings that apply org-wide. **No project allow can override them** — the org\'s ceiling is always the ceiling.',
+            analogy: 'Company policy. The team can add desk rules, but nobody overrides company policy.',
+          },
+          projectScope: {
+            title: 'Project scope',
+            body: 'Settings in `.claude/settings.json` at the repo root. **Committed to git — the whole team inherits the same allow/deny rules when they clone.**',
+            analogy: 'The house rules printed on the fridge: visible to everyone who works in this kitchen.',
+          },
+          userScope: {
+            title: 'User scope',
+            body: 'Settings in `~/.claude/settings.json`. Your personal defaults across **every project you touch** — not shared, never committed.',
+            analogy: 'Your own notebook: your preferences, your machine, nobody else sees it.',
+          },
+        },
+        faqs: [
+          {
+            q: 'Can my user settings override a project deny?',
+            a: 'No. **Deny at any scope is absolute.** A user-level allow cannot unlock a project-level deny — deny is a fire door, not a toggle.',
+          },
+          {
+            q: 'What wins for allows when project and user both grant something?',
+            a: '**The most local scope wins for allows.** User overrides project overrides the baseline. But for deny, the first match at any scope wins — no override, no exceptions.',
+          },
+          {
+            q: 'Where should the Release Notes Assistant\'s deny list live?',
+            a: 'In `.claude/settings.json` at the repo root. **Commit it, and every teammate inherits the same guardrails automatically** — nothing to configure per machine.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'Where do settings actually live? Not just one file — there are **four scopes**, and they don\'t all have the same weight.',
+            'At the top: [[Enterprise|enterprise]] scope — admin-managed, the org\'s ceiling. Then [[Project|projectScope]]: the settings file committed in the repo. Then [[User|userScope]]: our personal defaults across every project we touch. And finally the global baseline.',
+            'They all load together — not a chain of command, a stack of sticky notes, each one more specific as it gets closer to the work.',
+          ],
+          [
+            '**Enterprise scope sits at the ceiling.** It\'s not ours to write — the org manages it, and no project allow can override it.',
+            'Think of it like company policy versus desk notes. We write the desk notes. The company writes the policy. The policy has the final word.',
+          ],
+          [
+            'And here\'s the one rule with no exceptions: **deny at any scope wins everywhere below it.**',
+            'If the project settings deny a tool, a user-level allow cannot unlock it. If enterprise denies something, nothing below can grant it back. It\'s a fire door — locked from the inside, no key overrides it.',
+            'For the Release Notes Assistant: one deny list in the project settings, committed to git. **Anyone who clones it inherits the same guardrails** — they don\'t have to think about it.',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'Extending · Settings', text: 'Settings live in four scopes — deny at any scope blocks everywhere below', question: 'Where do settings live, and who wins when they conflict?' },
+          { kind: 'prose', size: 'lg', md: 'Four [[scopes|projectScope]] stack from org-wide to personal. **For allows, the most local scope wins. For deny, the first match anywhere wins** — no override, no exceptions.' },
+          { kind: 'diagram', diagramId: 'settings-scope', caption: 'Enterprise → Project → User → Global Default — deny at any layer is absolute' },
+        ],
+      },
     ],
   },
   plugins: {
@@ -1724,6 +1785,7 @@ Return a structured list — no prose, no filler.`,
           { kind: 'heading', eyebrow: 'Models', question: 'Which model do I reach for?', text: 'Match the model to the job — cost and speed are the deciding factors.' },
           { kind: 'prose', size: 'lg', md: 'The model lineup is fixed. The decision is ours: **match reasoning depth, speed, and cost to what the task actually needs** — not to what’s most impressive.' },
           { kind: 'callout', tone: 'analogy', md: 'Like choosing between sending a courier, a same-day delivery service, or overnight freight — same package, very different trade-offs.' },
+          { kind: 'diagram', diagramId: 'model-lineup', caption: 'Haiku → Sonnet → Opus: fast-and-cheap to slow-and-capable' },
           {
             kind: 'tiles',
             columns: 3,
@@ -1744,7 +1806,7 @@ Return a structured list — no prose, no filler.`,
     slides: [{
       id: 'mp-1',
       layout: 'center',
-      steps: 1,
+      steps: 4,
       estMinutes: 1.5,
       background: 'default',
       details: {
@@ -1769,11 +1831,28 @@ Return a structured list — no prose, no filler.`,
           a: 'Slightly. Smaller models benefit from **more explicit instructions**, while larger models handle ambiguity better. The **interactive picker** in this slide shows you the tradeoff in real time.',
         },
       ],
-      talkingPoints: [[
-        'The tradeoff isn\'t abstract: cost drops sharply as we move from Opus to Haiku, while latency tightens and raw reasoning power narrows.',
-        'Opus earns its price tag on tasks that need deep, multi-step reasoning — the kind of judgment call a senior engineer makes. Haiku gets you an answer in under a second for a fraction of the cost.',
-        'Most real workflows use both: Haiku handles the fast, repetitive subtasks; Opus steps in only when the complexity demands it.',
-      ]],
+      talkingPoints: [
+        [
+          'The tradeoff isn\'t abstract: cost drops sharply as we move from Opus to Haiku, while latency tightens and raw reasoning power narrows.',
+          'Opus earns its price tag on tasks that need deep, multi-step reasoning — the kind of judgment call a senior engineer makes. Haiku gets you an answer in under a second for a fraction of the cost.',
+          'Most real workflows use both: Haiku handles the fast, repetitive subtasks; Opus steps in only when the complexity demands it.',
+        ],
+        [
+          'Haiku 4.5 is the speed tier — sub-second responses at the lowest cost per token.',
+          'Use it for high-volume, well-scoped tasks: autocomplete, short summaries, quick lookups, anything where latency matters more than deep reasoning.',
+          'In multi-agent workflows, Haiku is the natural choice for leaf-node subtasks that run in parallel.',
+        ],
+        [
+          'Sonnet 4.6 is the daily driver — the right default for most coding and everyday work.',
+          'It hits the balanced sweet spot: capable enough to handle complex reasoning, fast enough that you barely notice the wait.',
+          'When in doubt, start here. Switch up to Opus only when Sonnet\'s answers fall short.',
+        ],
+        [
+          'Opus 4.8 is the deep-reasoning tier — bring it in for hard, multi-step problems and long autonomous runs.',
+          'It takes more time and costs more per token, but earns that on architecture decisions, tricky bugs, and any task where correctness beats speed.',
+          'Fable 5 sits at the frontier — the most capable model available, reserved for the hardest and longest problems where only the best will do.',
+        ],
+      ],
       blocks: [
         { kind: 'heading', eyebrow: 'Models', question: 'How do cost, speed, and depth trade off?', text: 'Not every task needs the most powerful model — pick by cost, speed, and reasoning depth.' },
         { kind: 'prose', size: 'lg', md: 'Choosing a model is a cost-speed-reasoning tradeoff: Haiku answers in milliseconds for a fraction of a cent, while Opus applies deep multi-step reasoning at a higher price. Most workflows blend both — Haiku for fast, repetitive tasks and Opus only when the complexity demands it.' },
