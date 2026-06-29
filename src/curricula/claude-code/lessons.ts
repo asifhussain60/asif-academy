@@ -503,6 +503,89 @@ export const lessons: Record<string, Lesson> = {
     ],
   },
 
+  'permission-modes': {
+    id: 'permission-modes',
+    title: 'Permission modes',
+    blurb: 'Five levels — from "ask me everything" to fully hands-free.',
+    slides: [
+      {
+        id: 'perm-1',
+        layout: 'center',
+        steps: 4,
+        estMinutes: 2,
+        background: 'grid',
+        details: {
+          askMode: {
+            title: 'Ask permissions',
+            body: 'Claude pauses **before every tool call** — file read, shell command, search — and waits for your approval. Nothing happens without a "yes."',
+            analogy: 'A cautious intern who checks in before touching anything on your desk.',
+          },
+          acceptMode: {
+            title: 'Accept edits',
+            body: '**File writes are auto-approved**, but shell commands (Bash, npm, git) still stop and ask. Good when you trust the edits but want a gate on running code.',
+            analogy: 'Approving all the paperwork in advance but still signing off before any real-world action.',
+          },
+          planMode: {
+            title: 'Plan mode',
+            body: 'A **read-only exploration pass** first — Claude maps what it wants to do and shows you a step-by-step proposal. Nothing is written until you approve.',
+            analogy: 'Ask a contractor to walk the site and write a quote before swinging a single hammer.',
+          },
+          autoMode: {
+            title: 'Auto mode',
+            body: 'Claude runs the full loop — observe, think, act — **without stopping**, asking only when it is genuinely stuck or reaches a decision it cannot reverse. The right mode for most real work.',
+            analogy: 'A senior developer you trust to execute: they call if the spec is unclear, not for every keypress.',
+          },
+          bypassMode: {
+            title: 'Bypass permissions',
+            body: 'All permission checks are **skipped entirely**. Intended for CI pipelines and headless automation where there is no human in the loop. Use with deliberate intent.',
+            analogy: 'Giving a robot the master key — efficient, but the guardrails are entirely on you.',
+          },
+        },
+        faqs: [
+          {
+            q: 'Which mode should I start with?',
+            a: '**Auto mode for most tasks.** It runs without constant interruption but still asks before irreversible actions. Drop to "Accept edits" when exploring an unfamiliar codebase.',
+          },
+          {
+            q: 'Can I change mode in the middle of a task?',
+            a: 'Yes — the Mode picker and keyboard shortcuts 1–5 switch instantly. **No restart needed.** Tighten the mode if the agent heads somewhere unexpected; open it back up once you’re comfortable.',
+          },
+          {
+            q: 'Is Bypass permissions dangerous?',
+            a: 'It skips every permission prompt. That is fine inside a sandboxed CI job, but **risky on your own machine** — pair it with deny lists so irreversible operations are still blocked at the settings layer.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'Here’s the question that comes up the moment we hand Claude Code a real task: how much should it just *do* on its own, and how much should it stop and check?',
+            'The answer isn’t a single setting — it’s a **dial with five positions**, running from “ask me before you touch anything” all the way to “run fully hands-free.”',
+            'These are the **five permission modes.** Knowing which to reach for is what separates confident, productive Claude Code use from constant interruptions — or worse, unwanted surprises.',
+          ],
+          [
+            'At the cautious end, we have two modes that keep us in control of every move.',
+            '**[[Ask permissions|askMode]]** is the most conservative: Claude pauses before every single tool call and waits for our yes. Think of it as a careful intern who checks in before touching anything on our desk.',
+            '**[[Accept edits|acceptMode]]** is one step up: file writes go through automatically, but shell commands — Bash, git, npm — still stop and ask. Great for exploring an unfamiliar codebase where we trust the reading but want a gate on running anything.',
+          ],
+          [
+            'In the middle sits **[[Plan mode|planMode]]** — and it’s different from the others. Instead of controlling each individual action, it gates the *whole plan*.',
+            'Claude does a read-only pass first: maps the codebase, writes out a step-by-step proposal. Nothing is written, nothing runs, until we review and say go.',
+            'Think of asking a contractor to walk the site and write a quote **before swinging a hammer.** We see the plan, argue about it, cross things out — then give the green light.',
+          ],
+          [
+            'And now the mode most of us will live in: **[[Auto mode|autoMode]]**.',
+            'Claude runs the full loop — observe, think, act — without stopping. It calls us only when it’s genuinely stuck, or reaches a decision it can’t reverse. For the Release Notes Assistant, this is how we run it: one prompt, full execution, done.',
+            'At the far end, **[[Bypass permissions|bypassMode]]** skips every check entirely. That’s for CI pipelines and headless scripts where there is no human in the loop — not for everyday work on our own machine. **Pair it with deny lists** so irreversible operations are still blocked at the settings layer.',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'Foundations · Permission modes', text: 'Five modes dial Claude’s autonomy from “ask everything” to fully hands-free', question: 'How much should Claude do on its own?' },
+          { kind: 'prose', size: 'lg', md: 'The **[[Mode picker|autoMode]]** gives us five positions on a single dial — choose how much Claude does silently and how much it stops to ask. Switch at any time with keyboard shortcuts **1–5**.' },
+          { kind: 'diagram', diagramId: 'permission-modes', caption: 'Most cautious → most autonomous — switch any time, no restart required' },
+        ],
+      },
+    ],
+  },
+
   // ── Module 1 · Foundations (cont.) — Models, context window, building blocks ──
   'models-foundations': {
     id: 'models-foundations',

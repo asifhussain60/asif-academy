@@ -63,9 +63,9 @@ function talkingPointsWriteback(): Plugin {
   };
 }
 
-// base: './' keeps the built deck portable (loads from any path / file://).
+// base: '/' ensures absolute asset paths so deep SPA routes load correctly on Cloudflare Pages.
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [react(), tailwindcss(), talkingPointsWriteback()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },

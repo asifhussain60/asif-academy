@@ -21,6 +21,7 @@ export const curriculum: Module[] = [
       'memory-hierarchy',
       'building-blocks',
       'slash-commands',
+      'permission-modes',
     ],
   },
   {
