@@ -98,6 +98,34 @@ export function Footer({
             aria-label="Jump to slide"
             className="w-16 rounded border border-border bg-surface px-2 py-1 text-center font-mono text-sm text-fg-muted outline-none transition-colors focus:border-accent focus:text-fg"
           />
+          <select
+            value={slideNo}
+            onChange={(e) => {
+              const entry = slides.find((s) => s.globalNo === Number(e.target.value));
+              if (entry) onJump(entry.position, 0);
+            }}
+            title="Browse slides"
+            aria-label="Browse slides"
+            className="max-w-[15rem] truncate rounded-md border border-border bg-surface px-2 py-1 font-mono text-sm text-fg-muted outline-none transition-colors hover:border-fg-subtle focus:border-accent"
+          >
+            {(() => {
+              const groups: { module: string; items: SlideOutlineEntry[] }[] = [];
+              for (const s of slides) {
+                const last = groups[groups.length - 1];
+                if (last && last.module === s.moduleTitle) last.items.push(s);
+                else groups.push({ module: s.moduleTitle, items: [s] });
+              }
+              return groups.map((g) => (
+                <optgroup key={g.module} label={g.module}>
+                  {g.items.map((s) => (
+                    <option key={s.globalNo} value={s.globalNo}>
+                      {s.globalNo}. {s.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ));
+            })()}
+          </select>
           <span className="font-mono text-sm tabular-nums text-fg-subtle">/ {slideTotal}</span>
         </div>
         <IconButton onClick={onNext} title="Next (→ / space)">→</IconButton>
