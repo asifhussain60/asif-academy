@@ -13,6 +13,9 @@ dist-ssr/
 # visual-QA throwaway (created/deleted by the QA loop)
 .visual-qa/
 
+# Cloudflare Wrangler (session tokens, tmp files)
+.wrangler/
+
 # editor / OS
 .DS_Store
 *.log

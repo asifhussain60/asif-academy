@@ -5,6 +5,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { AuthGuard } from './auth/AuthGuard';
 
 // Self-hosted fonts (no CDN dependency during a live talk).
+import '@fontsource-variable/caveat';
 import '@fontsource-variable/fraunces';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';

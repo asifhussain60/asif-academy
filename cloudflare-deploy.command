@@ -39,7 +39,7 @@ echo ""
 echo "▶ Step 4/4 — Deploying to Cloudflare Pages"
 npx wrangler pages deploy dist \
   --project-name "$PROJECT_NAME" \
-  --branch master
+  --branch main
 
 echo ""
 echo "╔══════════════════════════════════════════════════╗"
