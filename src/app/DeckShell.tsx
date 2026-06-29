@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import { ADMIN_EMAIL } from '@/auth/admin';
 import type { Tutorial, SlideCtx } from '@/engine/types';
 import {
   firstPosition,
@@ -12,6 +14,7 @@ import {
   slideOutline,
   type Position,
 } from '@/engine/navigation';
+
 import { SlideRenderer } from '@/engine/SlideRenderer';
 import { TutorialProvider } from './TutorialProvider';
 import { DeckControlsProvider } from './DeckControls';
@@ -28,6 +31,8 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
   const params = useParams();
   const { theme, qaOpen, notesOpen, visited } = useDeck();
   const store = useDeck();
+  const { user } = useAuth0();
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   const pos: Position = {
     moduleId: params.moduleId ?? '',
@@ -92,6 +97,12 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
     if (p) navigate(urlFor(p, 0));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tutorial, pos, navigate, urlFor]);
+
+  const goHome = useCallback(() => {
+    const first = firstPosition(tutorial);
+    if (first) navigate(urlFor(first, 0));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tutorial, navigate, urlFor]);
 
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen();
@@ -181,20 +192,18 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
             slideNo={globalSlideNumber(tutorial, pos)}
             slideTotal={slideTotal}
             slides={outline}
-            onJump={(p) => navigate(urlFor(p, 0))}
+            onJump={(p, s) => navigate(urlFor(p, s))}
             step={step}
             totalSteps={totalSteps}
+            onHome={goHome}
             onPrev={back}
             onNext={next}
             onToggleSidebar={store.toggleSidebar}
             onToggleTheme={store.toggleTheme}
-            onToggleQa={store.toggleQa}
-            onToggleNotes={store.toggleNotes}
             onFullscreen={toggleFullscreen}
             onPresent={openPresenter}
             theme={theme}
-            qaOpen={qaOpen}
-            notesOpen={notesOpen}
+            isAdmin={isAdmin}
           />
         </div>
       </div>

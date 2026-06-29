@@ -3,6 +3,7 @@ import { getTutorial } from '@/curricula';
 import { DeckShell } from './DeckShell';
 import { CatalogPage } from './CatalogPage';
 import { PresenterWindow } from '@/presenter/PresenterWindow';
+import { AdminGuard } from '@/auth/AdminGuard';
 
 function TutorialRoute() {
   const { tutorialId } = useParams();
@@ -26,6 +27,6 @@ export const router = createBrowserRouter([
   { path: '/', element: <CatalogPage /> },
   { path: '/t/:tutorialId', element: <TutorialRoute /> },
   { path: '/t/:tutorialId/m/:moduleId/l/:lessonId/:slideIndex/:step?', element: <TutorialRoute /> },
-  { path: '/present/:tutorialId', element: <PresenterWindow /> },
+  { path: '/present/:tutorialId', element: <AdminGuard><PresenterWindow /></AdminGuard> },
   { path: '*', element: <Missing what="page" /> },
 ]);
