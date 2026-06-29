@@ -25,7 +25,7 @@ export function Heading({
         className={clsx(
           'font-sans font-bold text-fg',
           level === 1 && 'text-3xl md:text-4xl',
-          level === 2 && 'text-2xl md:text-3xl',
+          level === 2 && 'text-xl md:text-2xl',
           level === 3 && 'text-lg md:text-xl',
         )}
       >
