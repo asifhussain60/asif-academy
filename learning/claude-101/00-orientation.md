@@ -52,8 +52,10 @@ the next file. Keep 05 open as a reference while you read.
 
 This folder is one notebook's worth of material inside a larger learning
 path that covers the whole Anthropic Academy catalog, organized around
-becoming a Claude Code expert. See [`../00-INDEX.md`](../00-INDEX.md) for the
-full roadmap and [`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for how to
+becoming a Claude Code expert. See
+[`../curriculum/01-claude-core.md`](../curriculum/01-claude-core.md) for
+this notebook's table of contents and curriculum, and
+[`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for how to
 load every tier into Google NotebookLM correctly — that guide is shared
 across all five tiers rather than repeated in each one.
 

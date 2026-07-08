@@ -43,5 +43,6 @@ tier as optional further reading rather than a required step.
   points from Tier 3, seen from the API side instead of the Claude Code
   side.
 
-See [`../00-INDEX.md`](../00-INDEX.md) for the full roadmap and
+See [`../curriculum/04-platform-and-api.md`](../curriculum/04-platform-and-api.md)
+for this notebook's table of contents and curriculum, and
 [`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for import instructions.

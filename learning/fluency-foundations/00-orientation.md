@@ -42,5 +42,6 @@ dismissiveness. Fifteen minutes here changes how you read every later tier.
   Claude can fail or mislead — so you know what to check before trusting an
   output.
 
-See [`../00-INDEX.md`](../00-INDEX.md) for the full five-tier roadmap and
+See [`../curriculum/00-fluency-foundations.md`](../curriculum/00-fluency-foundations.md)
+for this notebook's table of contents and curriculum, and
 [`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for import instructions.

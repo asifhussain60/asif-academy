@@ -53,5 +53,6 @@ rather than replacing it.
 - Explain MCP's three primitives (Tools, Resources, Prompts) and build a
   minimal MCP server or client in Python.
 
-See [`../00-INDEX.md`](../00-INDEX.md) for the full roadmap and
+See [`../curriculum/03-extending-claude-code.md`](../curriculum/03-extending-claude-code.md)
+for this notebook's table of contents and curriculum, and
 [`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for import instructions.

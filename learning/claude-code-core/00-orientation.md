@@ -53,6 +53,8 @@ the links above; treat this folder as pre-read structure, not a replacement.
 - Recognize when a task calls for Cowork's broader desktop-agent loop instead
   of the CLI.
 
-This tier maps directly onto [`../00-INDEX.md`](../00-INDEX.md)'s stated
-goal. See [`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for how to load
-this folder into its own NotebookLM notebook.
+This tier maps directly onto this path's stated goal. See
+[`../curriculum/02-claude-code-mastery.md`](../curriculum/02-claude-code-mastery.md)
+for this notebook's table of contents and curriculum, and
+[`../NOTEBOOKLM-GUIDE.md`](../NOTEBOOKLM-GUIDE.md) for how to load this
+folder into its own NotebookLM notebook.

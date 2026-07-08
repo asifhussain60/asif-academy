@@ -1,8 +1,9 @@
 # How to Load This Path Into Google NotebookLM
 
-This guide is shared across all five tiers in [`00-INDEX.md`](00-INDEX.md) —
-read it once, apply it to every tier's notebook, rather than re-reading a
-per-tier copy.
+This guide is shared across all five tiers — read it once, apply it to
+every tier's notebook, rather than re-reading a per-tier copy. See the
+[`curriculum/`](curriculum/) folder for each notebook's specific table of
+contents and session-by-session curriculum.
 
 ## Why five notebooks, not one
 
