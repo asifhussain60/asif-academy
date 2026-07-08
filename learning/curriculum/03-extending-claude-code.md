@@ -33,3 +33,26 @@ that specific output to just those documents instead of the whole notebook.
 | 3 | `03-mcp-introduction.md` | Only `03-mcp-introduction.md` | **Infographic** — the Tools/Resources/Prompts "who controls it" table is a perfect compression candidate |
 | 4 | `04-mcp-advanced.md` | Only `04-mcp-advanced.md` | **Infographic** — the transport-selection table (stdio vs. StreamableHTTP vs. stateless-HTTP vs. json-response) |
 | 5 (capstone) | — | All | **Video Overview**, then **Quiz** |
+
+## Prompts to enter in Studio's "Customise" dialog
+
+**Session 1 — Mind Map**
+> Show how Agent Skills, Subagents, and MCP (introduction and advanced) relate as three different ways of extending Claude Code beyond a single conversation.
+
+**Session 1 — Slide deck**
+> Create a slide deck on Skill anatomy — the SKILL.md file, its frontmatter fields, progressive disclosure — and the skill priority hierarchy: Enterprise, Personal, Project, Plugins.
+
+**Session 2 — Slide deck**
+> Create a slide deck on the four traits that make a subagent reliable — a specific description, a defined output format, an obstacles-encountered section, and deliberately limited tool access — plus the three anti-patterns to avoid.
+
+**Session 3 — Infographic**
+> Create an infographic of MCP's three primitives — Tools, Resources, and Prompts — showing who controls each one (the model, the application, or the user) and what each is best used for.
+
+**Session 4 — Infographic**
+> Create an infographic comparing MCP transport choices — stdio, StreamableHTTP with both flags false, StreamableHTTP with stateless_http true, and StreamableHTTP with json_response true — and when to choose each.
+
+**Session 5 — Video Overview**
+> Recap Agent Skills, Subagents, and MCP (both the introduction and advanced topics) as three complementary ways to extend what Claude Code can do.
+
+**Session 5 — Quiz**
+> Quiz me on the skill priority hierarchy, the four traits of a reliable subagent, MCP's three primitives, and choosing the right MCP transport.

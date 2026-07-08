@@ -35,3 +35,31 @@ without literally splitting the file.
 | 3 | `02-building-with-claude-api.md` (prompt-eval workflow, XML tags, RAG: chunking, embeddings, BM25) | Only `02-building-with-claude-api.md` | **Slide deck** — the RAG pipeline (chunk → embed → hybrid search) is inherently a flow diagram |
 | 4 | `02-building-with-claude-api.md` (images/PDFs, citations, workflows vs. agents, the three workflow patterns) | Only `02-building-with-claude-api.md` | **Infographic** — the Workflows-vs-Agents decision table, plus chaining/routing/parallelization side by side |
 | 5 (capstone) | — | All | **Video Overview**, then **Quiz** |
+
+## Prompts to enter in Studio's "Customise" dialog
+
+Sessions 1–4 all draw from just two files, so the Customise prompt is what
+actually separates "first half" from "second half" — say explicitly what
+to leave out, not just what to cover, or NotebookLM will pull from the
+whole file regardless of which half you just read.
+
+**Session 1 — Mind Map**
+> Show how Claude Platform 101 and Building with the Claude API relate — platform fundamentals versus the deeper techniques built on top of them.
+
+**Session 1 — Slide deck**
+> Create a slide deck covering only: making a first API call with messages.create, choosing between the Fable, Opus, Sonnet, and Haiku model tiers, the agent loop (send messages, check stop_reason, run tools, loop), and the mechanics of defining and using tools. Do not cover Skills, MCP, context management, or managed agents.
+
+**Session 2 — Slide deck**
+> Create a slide deck covering only: Anthropic's built-in server tools (web search, code execution, web fetch), Skills on the API, MCP and how it differs from tools and Skills, and the four context-management patterns — just-in-time context, server-side compaction, prompt caching, the memory tool — plus managed agents. Do not cover the first API call, model tiers, or the basic agent loop.
+
+**Session 3 — Slide deck**
+> Create a slide deck covering only: the prompt-evaluation workflow, structuring prompts with XML tags, and the RAG pipeline — chunking strategies, embeddings and semantic search, then BM25 and hybrid search. Do not cover images, PDFs, citations, or workflow patterns.
+
+**Session 4 — Infographic**
+> Create an infographic covering only: workflows versus agents as an architectural choice, and the three workflow patterns — chaining, routing, parallelization — compared side by side. Do not cover RAG, chunking, images, or citations.
+
+**Session 5 — Video Overview**
+> Recap the full arc from Claude Platform 101 through Building with the Claude API — API basics, the agent loop, context management, RAG, and workflow patterns.
+
+**Session 5 — Quiz**
+> Quiz me on model tier selection, the agent loop, the four context-management patterns, RAG chunking strategies, and choosing between a workflow and an agent.

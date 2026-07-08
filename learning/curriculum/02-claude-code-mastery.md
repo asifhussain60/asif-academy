@@ -30,3 +30,32 @@ that specific output to just those documents instead of the whole notebook.
 | 2 | `02-claude-code-in-action.md` | Only `02-claude-code-in-action.md` | **Slide deck** for context management/custom commands/MCP/GitHub, then **Infographic** for the hooks event-type table (PreToolUse/PostToolUse/Notification/Stop/SubagentStop/PreCompact/UserPromptSubmit/SessionStart/SessionEnd) |
 | 3 | `03-claude-cowork.md` | Only `03-claude-cowork.md` | **Slide deck** for the four "make it yours" building blocks, then **Infographic** for the Chat vs. Cowork vs. Code comparison table |
 | 4 (capstone) | — | All | **Video Overview**, then **Flashcards** for slash-commands/keyboard shortcuts, then **Quiz** |
+
+## Prompts to enter in Studio's "Customise" dialog
+
+**Session 1 — Mind Map**
+> Show how Claude Code 101, Claude Code in Action, and Introduction to Claude Cowork relate — the Explore/Plan/Code/Commit workflow versus Cowork's delegation model, and where they overlap.
+
+**Session 1 — Slide deck**
+> Create a slide deck on the Explore → Plan → Code → Commit workflow, plus the three permission modes — Approval mode, Auto-accept mode, and Plan Mode.
+
+**Session 2 — Slide deck**
+> Create a slide deck covering CLAUDE.md and @ mentions, Planning Mode versus effort level, custom commands, and what the Agent SDK is for.
+
+**Session 2 — Infographic**
+> Create an infographic of the Claude Code hook events — PreToolUse, PostToolUse, Notification, Stop, SubagentStop, PreCompact, UserPromptSubmit, SessionStart, SessionEnd — showing what triggers each one and whether it can block the action.
+
+**Session 3 — Slide deck**
+> Create a slide deck on the four Cowork "make it yours" building blocks — global instructions, projects, skills, plugins — showing what each one teaches Cowork and what that unlocks.
+
+**Session 3 — Infographic**
+> Create an infographic comparing Chat vs. Cowork vs. Code — what each mode is best for and where it runs.
+
+**Session 4 — Video Overview**
+> Recap this notebook's full arc — Claude Code 101's core workflow, Claude Code in Action's deeper customization, and Claude Cowork's delegation model.
+
+**Session 4 — Flashcards**
+> Make flashcards of the slash commands and keyboard shortcuts mentioned across this notebook — command on the front, what it does on the back.
+
+**Session 4 — Quiz**
+> Quiz me on the Explore/Plan/Code/Commit workflow, the Claude Code hook events, and the four Cowork building blocks.

@@ -41,3 +41,32 @@ wherever "All" is listed.
 | 4 | `04-putting-it-together.md` — watch the 6 YouTube videos in this session too | Only `04-putting-it-together.md` + the 6 YouTube sources | **Slide deck** — role-based use cases |
 | 5 | `05-glossary-and-cheatsheet.md` | Only `05-glossary-and-cheatsheet.md` | **Infographic** — this file *is* a cheatsheet already; turning it visual is the highest-leverage single output in this tier |
 | 6 (capstone) | — | All | **Video Overview**, then **Flashcards** for the glossary terms, then **Quiz** |
+
+## Prompts to enter in Studio's "Customise" dialog
+
+**Session 1 — Mind Map**
+> Show how Chat, Cowork, and Code relate to each other, and how the three-part prompting framework (setting the stage, defining the task, specifying rules) applies across all three.
+
+**Session 1 — Slide deck**
+> Create a slide deck on Chat vs. Cowork vs. Code and the three-part prompting framework — setting the stage, defining the task, specifying rules — with one worked example prompt.
+
+**Session 2 — Slide deck**
+> Create a slide deck comparing Projects, Artifacts, and Skills — what each one stores, when to reach for it, and how they combine with each other.
+
+**Session 3 — Slide deck**
+> Create a slide deck on Connectors (and the Model Context Protocol behind them), Enterprise Search, and Research mode — what each does and when to use it instead of the others.
+
+**Session 4 — Slide deck**
+> Create a slide deck of Claude use cases organized by role — sales, marketing, finance, HR, legal, research — plus the non-claude.ai surfaces: Claude Code, @Claude, Claude Design, Claude for Microsoft 365, and Claude in Chrome.
+
+**Session 5 — Infographic**
+> Turn this glossary and feature-selection cheatsheet into a single visual reference card — one column of terms with plain-English definitions, one column of "when to use it."
+
+**Session 6 — Video Overview**
+> Recap this whole notebook — Chat/Cowork/Code, Projects/Artifacts/Skills, Connectors/Enterprise Search/Research mode, and role-based use cases.
+
+**Session 6 — Flashcards**
+> Make flashcards from the glossary and feature-selection cheatsheet terms in this notebook — term on the front, plain-English definition on the back.
+
+**Session 6 — Quiz**
+> Quiz me on the feature-selection cheatsheet — given a task description, which Claude feature (Chat, Project, Artifact, Skill, Connector, Enterprise Search, Research) fits best.

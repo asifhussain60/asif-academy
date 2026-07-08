@@ -29,3 +29,26 @@ that specific output to just those documents instead of the whole notebook.
 | 2 | `01-ai-fluency-framework.md` | Only `01-ai-fluency-framework.md` | **Slide deck** — one slide per D (Delegation, Description, Discernment, Diligence) |
 | 3 | `02-ai-capabilities-and-limitations.md` | Only `02-ai-capabilities-and-limitations.md` | **Infographic** — the four-property capability↔limitation continuum table is the densest, most reference-worthy content in this tier |
 | 4 (capstone) | — | All 3 files | **Video Overview**, then **Quiz** |
+
+## Prompts to enter in Studio's "Customise" dialog
+
+Most Studio outputs (Mind Map, Slide deck, Infographic, Video Overview,
+Quiz — as shown in the "Customise Mind Map" example) let you type a topic
+or instruction before generating. Paste the matching prompt below rather
+than leaving it blank — a generic generation tends to skim everything at
+the same depth instead of emphasizing what this session is actually about.
+
+**Session 1 — Mind Map**
+> Focus this Mind Map on how the AI Fluency Framework's 4Ds (Delegation, Description, Discernment, Diligence) relate to the four generative-AI properties (Next Token Prediction, Knowledge, Working Memory, Steerability) — show which property each D is most responding to.
+
+**Session 2 — Slide deck**
+> Create a slide deck with one slide per D — Delegation, Description, Discernment, Diligence — plus a slide on the three ways of engaging with AI (Automation, Augmentation, Agency). Keep each slide to the core definition and one practical example.
+
+**Session 3 — Infographic**
+> Create an infographic showing the four-property capability-to-limitation continuum: Next Token Prediction, Knowledge, Working Memory, Steerability. For each property show what it enables, where it characteristically fails, and the product features that push the limitation further out.
+
+**Session 4 — Video Overview**
+> Give a full recap of this notebook covering the 4D Framework and the four generative-AI properties, and how they mirror each other.
+
+**Session 4 — Quiz**
+> Quiz me on the 4Ds, the three ways of engaging with AI, and the four generative-AI properties covered in this notebook.
