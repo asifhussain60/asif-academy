@@ -118,7 +118,7 @@ export const lessons: Record<string, Lesson> = {
           ],
         ],
         blocks: [
-          { kind: 'heading', eyebrow: 'Foundations · Where it runs', text: 'Four surfaces, one agent behind them', question: 'Where do I actually run it?' },
+          { kind: 'heading', eyebrow: 'Foundations · Where it runs', text: 'Four surfaces reach the same one agent', question: 'Where do I actually run it?' },
           { kind: 'prose', size: 'lg', md: 'You reach Claude Code through several [[surfaces|surface]] — but it’s the **same agent everywhere**, only the window changes.' },
           { kind: 'diagram', diagramId: 'context-stack', caption: 'Terminal · IDE · Desktop · Web — one agent underneath' },
         ],
@@ -214,7 +214,7 @@ export const lessons: Record<string, Lesson> = {
           },
           {
             q: 'Could it loop forever?',
-            a: 'In practice no — each turn either makes progress toward an answer or hits a guardrail (permissions, limits). The exit is built into the rule, not bolted on.',
+            a: 'In practice no — each turn either makes progress toward an answer or hits a guardrail (permissions, limits). **The exit is built into the rule, not bolted on.**',
           },
           {
             q: 'What if it keeps calling tools and never writes a final answer?',
@@ -263,7 +263,7 @@ export const lessons: Record<string, Lesson> = {
         faqs: [
           {
             q: 'Is this a real Claude Code session?',
-            a: 'It’s a faithful re-creation for teaching — the phases, order, and stopping point are exactly what a real run does, slowed down so each step is visible.',
+            a: 'It’s a faithful re-creation for teaching — **the phases, order, and stopping point are exactly what a real run does**, slowed down so each step is visible.',
           },
           {
             q: 'Why does verifying matter so much?',
@@ -341,7 +341,7 @@ export const lessons: Record<string, Lesson> = {
           },
           {
             q: 'What goes in it?',
-            a: 'Standing facts the agent should never have to be told twice: build/test commands, code conventions, “always do X,” and known traps. Keep it tight — it loads every session.',
+            a: 'Standing facts the agent should never have to be told twice: build/test commands, code conventions, “always do X,” and known traps. **Keep it tight — it loads every session.**',
           },
         ],
         talkingPoints: [
@@ -930,7 +930,7 @@ export const lessons: Record<string, Lesson> = {
           },
           {
             q: 'Can a Skill reference other files?',
-            a: 'Yes — the body can include `@filename` references and the agent loads them on demand too. Useful for pointing at a sample changelog or a list of PR categories.',
+            a: 'Yes — the body can include `@filename` references and **the agent loads them on demand too**. Useful for pointing at a sample changelog or a list of PR categories.',
           },
           {
             q: 'Do I commit this to the repo?',
@@ -1537,7 +1537,7 @@ Return a structured list — no prose, no filler.`,
           },
           scope: {
             title: 'Settings scope',
-            body: 'Four layers, highest-wins: **Enterprise** > **Project** (`.claude/settings.json`) > **User** (`~/.claude/settings.json`). Deny at any layer blocks everywhere below.',
+            body: 'Four layers, highest-wins: **Enterprise** > **Project** (`.claude/settings.json`) > **User** (`~/.claude/settings.json`) > **Global default**. Deny at any layer blocks everywhere below.',
             analogy: 'Like git config: the more local file overrides the global one.',
           },
         },
@@ -1563,6 +1563,7 @@ Return a structured list — no prose, no filler.`,
         blocks: [
           { kind: 'heading', eyebrow: 'Extending · Settings', text: 'Settings tune what Claude does silently — deny always beats allow', question: 'How do I control what Claude can touch?' },
           { kind: 'prose', size: 'lg', md: '[[Allow lists|allow]] say what to do silently. [[Deny lists|deny]] block regardless. A four-level [[scope|scope]] hierarchy means project rules travel with the repo — and a deny at any layer blocks everywhere below it.' },
+          { kind: 'diagram', diagramId: 'allow-vs-deny', caption: 'Allow runs silently · deny is a fire door — deny always beats allow' },
           { kind: 'code', lang: 'json', filename: '.claude/settings.json', code: `{
   "permissions": {
     "allow": ["Write:src/**", "Bash:npm test"],
@@ -1738,7 +1739,7 @@ Return a structured list — no prose, no filler.`,
       {
         id: 'ml-1',
         layout: 'center',
-        steps: 1,
+        steps: 4,
         estMinutes: 1.5,
         background: 'default',
         details: {
@@ -1774,11 +1775,27 @@ Return a structured list — no prose, no filler.`,
         ],
         talkingPoints: [
           [
-            'We already know the lineup — Haiku, Sonnet, Opus. We met them in Foundations. The question here is: **how do we pick one for a given job?**',
+            'We already know the lineup — Haiku, Sonnet, Opus, Fable. We met them in Foundations. The question here is: **how do we pick one for a given job?**',
             'The answer is a two-axis test. Axis one: **how much reasoning does this task actually need?** Axis two: **how much does it matter if this call takes two seconds instead of two hundred milliseconds?**',
-            'High reasoning, low volume, correctness critical? That’s Opus. Standard coding work, everyday edits, complex but routine? Sonnet — the default, and the right call most of the time. High volume, fast turnaround, low stakes? Haiku. It costs a fraction and runs in milliseconds.',
-            'The practical rule: **start with Sonnet and only move if you hit a wall or a bill.** Move up to Opus when the problem is genuinely hard to reason about. Move down to Haiku when you’re sending the same simple task dozens of times.',
-            'That’s it. Not a hierarchy of quality — a **dial we tune to the job.** Cost and speed are the controls.',
+            'The practical rule: **start with Sonnet and only move if you hit a wall or a bill.** Move up when the problem is genuinely hard to reason about; move down when you’re sending the same simple task dozens of times. It’s not a hierarchy of quality — a **dial we tune to the job.**',
+            'Start at the left of the dial: **Haiku 4.5, the fast-and-light tier.** Sub-second responses at the lowest cost per token.',
+            'Reach for it on quick, well-scoped work — linting, formatting, short summaries, quick lookups — anywhere **speed and cost matter more than deep reasoning.**',
+            'In multi-agent runs it’s the natural pick for the small, parallel subtasks where you’re firing the same simple job dozens of times.',
+          ],
+          [
+            'Next along the dial: **Sonnet 4.6, the daily driver.** This is the balanced default for most coding and everyday work.',
+            'It hits the sweet spot — **capable enough for complex, routine edits, fast enough that you barely notice the wait.**',
+            'When in doubt, start here. Only move off Sonnet when you have a concrete reason — a problem it can’t crack, or a bill you need to shrink.',
+          ],
+          [
+            'Further right: **Opus 4.8, the deep-reasoning tier.** Bring it in for hard, multi-step problems and long autonomous runs.',
+            'It costs more per token and takes more time, but it earns that on **architecture decisions, tricky bugs, and anywhere correctness beats speed.**',
+            'This is the move-up, not the default — you reach for Opus when Sonnet hits a wall on genuinely hard reasoning.',
+          ],
+          [
+            'At the far right of the dial: **Fable 5, the frontier tier.** The most capable model in the lineup.',
+            'Reserve it for the **hardest, longest problems** — the ones where only the very best will do, and where the outcome justifies the highest price.',
+            'For everything else, stay left. Fable is the ceiling you climb to deliberately, not the model you default to.',
           ],
         ],
         blocks: [
@@ -1936,7 +1953,7 @@ Keep it collaborative: "Consider extracting this" not "This is wrong."` },
       {
         id: 'rs-1',
         layout: 'center',
-        steps: 3,
+        steps: 4,
         estMinutes: 2,
         background: 'grid',
         details: {
@@ -1967,7 +1984,10 @@ Keep it collaborative: "Consider extracting this" not "This is wrong."` },
           ],
           [
             'In practice: we ask "Why is the API latency spiking?" The main agent spawns the research subagent. It reads logs, queries the metrics MCP, checks recent commits.',
-            'All that noise stays in its own context. What comes back: one concise summary, two probable causes, one recommendation.',
+            'All that noise stays in its own context — the subagent is heads-down, working the problem in its own separate notebook.',
+          ],
+          [
+            'Then the payoff: what comes back is one concise summary, two probable causes, one recommendation.',
             '**The main agent never saw the raw data.** It got the answer. That is why isolation is the whole point.',
           ],
         ],
@@ -2115,6 +2135,213 @@ Return a concise memo: 3-5 sentences max. Do not include raw data.` },
               { title: 'The project', icon: '📄', tone: 'accent', body: 'Release Notes Assistant. **One tool, grown one module at a time.**' },
             ],
           },
+        ],
+      },
+    ],
+  },
+
+  // ── 00 · AI Fluency Foundations (NotebookLM study pack) ────────────────────
+  // Artifact-showcase archetype: each slide's focal visual is a downloaded NotebookLM
+  // output (mind map, slide-deck PDF, infographic, recap video) rather than an SVG/comic.
+  // Files are served from public/notebooklm/00-fluency-foundations/… ; the video is on YouTube.
+  'fluency-foundations': {
+    id: 'fluency-foundations',
+    title: 'AI Fluency Foundations',
+    blurb: 'The 4D habits and the machine’s four properties — a NotebookLM study pack.',
+    slides: [
+      {
+        id: 'fl-1',
+        layout: 'center',
+        estMinutes: 2,
+        background: 'grid',
+        details: {
+          fourds: {
+            title: 'The 4D Framework',
+            icon: '🧭',
+            body: 'Four habits for working with AI: **Delegation** (what to hand off), **Description** (say what you want clearly), **Discernment** (judge what comes back), **Diligence** (own the result responsibly).',
+            analogy: 'Working with a sharp new teammate: pick the task, brief them well, check their work, sign off on it.',
+            source: { label: 'AI Fluency Framework (Anthropic Academy)', href: 'https://www.anthropic.com/ai-fluency' },
+          },
+          props: {
+            title: 'The four properties',
+            icon: '⚙️',
+            body: 'What the machine actually does: **Next Token Prediction**, **Knowledge**, **Working Memory**, **Steerability**. These are the machine-side mirror of the 4Ds — what our habits are responding to.',
+            points: [
+              '**Discernment** answers **Next Token Prediction** — output is generated, not looked up.',
+              '**Delegation** answers **Knowledge** — hand off where the model is well-stocked.',
+              '**Description** answers **Working Memory** and **Steerability** — what you say, and how much fits.',
+            ],
+          },
+        },
+        faqs: [
+          {
+            q: 'Why start a Claude Code course with AI fluency?',
+            a: 'Because the agent is still the same kind of machine underneath. **Knowing what it can and can’t do is what makes delegating to it safe** — the habits transfer straight to Claude Code.',
+          },
+          {
+            q: 'Do I have to memorize all eight terms?',
+            a: 'No. Hold onto the shape: **four things we do, four things the machine does, paired.** The mind map is here so you can come back to the detail whenever you need it.',
+          },
+          {
+            q: 'Where did this come from?',
+            a: 'It’s the mind map **NotebookLM generated** from the AI Fluency source notes. Every slide in this pack is a real Studio output — this is what the tool builds for you.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'Before we touch a single command, one question worth sitting with: what makes working with AI a *skill* at all, and not just typing?',
+            'The answer this course lands on is four habits — **Delegation, Description, Discernment, Diligence.** What to hand off, how to ask, how to judge the answer, how to own it.',
+            'And here’s the part that makes it click: each habit is answering something the *machine* does. It writes word by word, it knows a frozen slice of the world, it has a finite desk, it follows patterns.',
+            'So picture two columns — our four habits on the left, the machine’s four properties on the right — and lines connecting them. That’s this whole map. **We describe more carefully precisely because its memory is finite.**',
+            'Keep this picture close. Everything we do in Claude Code later is one of these four habits, aimed at one of those four properties.',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'AI Fluency Foundations · The whole map', text: 'Our four habits and the machine’s four properties are two halves of one map', question: 'What actually makes working with AI a skill?' },
+          { kind: 'prose', size: 'lg', md: 'The [[4D Framework|fourds]] is what *we* do — Delegation, Description, Discernment, Diligence. The [[four properties|props]] are what the *machine* does. This mind map lays them side by side so each habit lines up with the property it answers.' },
+          { kind: 'image', src: '/notebooklm/00-fluency-foundations/mind-maps/01-whole-notebook.png', alt: 'Mind map linking the 4Ds — Delegation, Description, Discernment, Diligence — to the four generative-AI properties: Next Token Prediction, Knowledge, Working Memory, Steerability', caption: 'Each habit answers a property — human competencies mirrored against machine behaviour', size: 'lg' },
+          { kind: 'callout', tone: 'key', md: 'The 4Ds and the four properties are **two halves of one system**: the habits describe how we work *with* AI; the properties describe what we’re working *with*.' },
+        ],
+      },
+      {
+        id: 'fl-2',
+        layout: 'center',
+        estMinutes: 2,
+        background: 'grid',
+        details: {
+          delegation: {
+            title: 'Delegation',
+            icon: '🗂️',
+            body: 'Decide what to do yourself versus with AI — knowing your goal, knowing what the tool is good at, and splitting the work accordingly. **The aim isn’t automating everything; it’s the best partnership for the task.**',
+          },
+          modes: {
+            title: 'Three ways to engage',
+            icon: '🎚️',
+            body: '**Automation** (AI does one specified task), **Augmentation** (you and AI think together), **Agency** (you configure AI to work more independently). The same 4D judgment applies across all three.',
+            analogy: 'Same driving skills whether you’re parking, road-tripping with a co-pilot, or sending the car to fetch groceries.',
+          },
+        },
+        faqs: [
+          {
+            q: 'Isn’t “describe clearly” just obvious advice?',
+            a: 'It sounds obvious until you watch quality swing on it. **The AI can’t read your mind** — most disappointing answers trace back to a vague ask, not a weak model.',
+          },
+          {
+            q: 'What’s the difference between Discernment and Diligence?',
+            a: 'Discernment is judging whether the *answer* is good. Diligence is owning what you do with it. **You can spot a flawless draft and still be the one accountable for shipping it.**',
+          },
+          {
+            q: 'Which of the four is hardest?',
+            a: 'Most people find **Discernment** hardest — judging reasoning you didn’t do yourself. That’s exactly why the next slide is about where the machine tends to fail.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'So if those are the four habits, what does one actually look like in practice? Let’s walk the loop.',
+            'It starts with **Delegation** — is this even a good task to hand off? That’s not a yes/no; it’s knowing your goal and knowing what the tool is genuinely good at.',
+            'Then **Description**: say what you want — the output, the approach, the tone. Then **Discernment**: judge what comes back, not just the answer but the reasoning. Then **Diligence**: you own whatever you pass on as if you’d made it yourself.',
+            'Notice it’s a *loop*, not a checklist. We describe, we judge, we describe again — the same way we’d go back and forth with a new teammate until the work is right.',
+            'And it runs at three volumes — **automation, augmentation, agency** — from handing off one task to setting up an agent that works on its own. Same four habits every time. That last one, agency, is the door into Claude Code.',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'AI Fluency Foundations · The 4D habits', text: 'Working well with AI is four learnable habits — not a knack you’re born with', question: 'What does one of these habits look like in practice?' },
+          { kind: 'prose', size: 'lg', md: 'The deck walks each habit in turn — [[Delegation|delegation]], Description, Discernment, Diligence — plus the [[three ways we engage|modes]] with AI. It’s a loop we run, not a box we tick.' },
+          { kind: 'embed', src: '/notebooklm/00-fluency-foundations/slide-decks/02-the-4d-framework.pdf', title: 'The 4D Framework — one slide per D, plus the three engagement modes', caption: 'NotebookLM slide deck — page through the four habits and the three ways to engage', aspect: '16:9' },
+        ],
+      },
+      {
+        id: 'fl-3',
+        layout: 'center',
+        estMinutes: 2.5,
+        background: 'grid',
+        details: {
+          continuum: {
+            title: 'Capability ↔ limitation continuum',
+            icon: '📈',
+            body: 'Each property runs on a **spectrum** from strength to failure — and the *same* mechanism produces both ends. Calibrated trust means locating a specific task on the dial, not trusting or distrusting AI wholesale.',
+            analogy: 'A dimmer switch, not an on/off toggle.',
+          },
+          collide: {
+            title: 'When properties collide',
+            icon: '💥',
+            body: 'Most real failures are **two properties intersecting**: Next Token Prediction + Knowledge → hallucinated specifics; Working Memory + Steerability → long-conversation drift. Naming the pair points straight at the fix.',
+          },
+        },
+        faqs: [
+          {
+            q: 'Why does fluent, confident AI still get things wrong?',
+            a: 'Because the very thing that makes it fluent — predicting the next word — is also what makes it fabricate. **Fluency and hallucination are the same mechanism**, which is why confidence isn’t proof.',
+          },
+          {
+            q: 'How do I know when to trust an answer?',
+            a: 'Locate the task on each dial. **Specific names, dates, and citations sit in the failure zone** for Next Token Prediction — verify those; a plain-English summary of a common topic is safe.',
+          },
+          {
+            q: 'What are the “product features” in the infographic?',
+            a: 'They’re the tools that push a limitation further out — web search, retrieval, memory, code execution. **Claude Code is largely a bundle of these features**, which is the bridge into the rest of the course.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'Here’s the question that decides whether AI helps or burns you: when *can* you trust it?',
+            'The course’s answer is beautifully simple. Each of the four properties isn’t a strength or a weakness — it’s a **dial that runs from one to the other.** And the same mechanism drives both ends.',
+            'Take prediction. It writes word by word from patterns, and that *single* trait gives us both the fluency we love and the confident wrong answers we fear. Ask it to summarise a common idea — safe. Ask it for an exact citation — that’s the failure zone.',
+            'So trust stops being all-or-nothing. It becomes: **where does *this* task sit on each dial?** Locate it, and you know exactly what to double-check.',
+            'One more gift in here — most real failures are *two* dials colliding at once. Name the pair, and you’ve named the fix. This infographic is the reference card for all of it; screenshot it.',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'AI Fluency Foundations · The reference card', text: 'Every AI strength and its matching weakness come from the same mechanism — so trust is a dial, not a switch', question: 'When can we actually trust what it says?' },
+          { kind: 'prose', size: 'lg', md: 'Each property sits on a [[capability-to-limitation continuum|continuum]] — what it enables, where it fails, and the features that push the failure further out. Calibrated trust is locating a task on the dial, not judging AI wholesale.' },
+          { kind: 'image', src: '/notebooklm/00-fluency-foundations/infographics/03-capability-limitation-continuum.png', alt: 'Infographic comparing the four properties — Next Token Prediction, Knowledge, Working Memory, Steerability — each with what it enables, where it fails, and the product features that mitigate the limitation', caption: 'The densest page in this tier — each property’s enables / fails / mitigations, side by side', size: 'lg' },
+          { kind: 'callout', tone: 'tip', md: 'Most real failures are **two dials colliding** — hallucinated specifics, or long-conversation drift. [[Naming the pair|collide]] points straight at the fix.' },
+        ],
+      },
+      {
+        id: 'fl-4',
+        layout: 'center',
+        estMinutes: 2.5,
+        background: 'spotlight',
+        details: {
+          mirror: {
+            title: 'Two halves, one system',
+            icon: '🪞',
+            body: 'The **4Ds** are the human competencies; the **four properties** are the machine behaviours those competencies respond to. Learn them together and each explains the other.',
+          },
+        },
+        faqs: [
+          {
+            q: 'What should I actually walk away with?',
+            a: 'One habit and one instinct: **run the 4D loop, and locate a task on the four dials before trusting it.** Everything in Claude Code is those two moves, sped up.',
+          },
+          {
+            q: 'How does this connect to the rest of the course?',
+            a: 'Directly. **Working Memory becomes the context window; the mitigations become Skills, memory, and MCP.** The next modules are these ideas made concrete in the agent.',
+          },
+          {
+            q: 'Is the video a substitute for the slides?',
+            a: 'It’s the fast recap — great on a commute. **The mind map and infographic are the reference; the video is the review.** Use them for different jobs.',
+          },
+        ],
+        talkingPoints: [
+          [
+            'So where does all of this leave us before we open the terminal?',
+            'With one idea worth carrying the whole way: the four habits and the four properties are **two halves of one system.** We delegate because knowledge is uneven; we describe carefully because memory is finite; we discern because answers are generated, not retrieved.',
+            'This recap ties it together in a couple of minutes — a good one to replay on the commute once the terms have settled.',
+            'And here’s the bridge. Every limitation we just met has a fix, and those fixes have names: **web search, memory, retrieval, code execution.** In the next modules those stop being abstract — they become the agent we build.',
+            'You came in asking what makes working with AI a skill. You leave with the answer, and a map for the rest of the course. **Let’s go build with it.**',
+          ],
+        ],
+        blocks: [
+          { kind: 'heading', eyebrow: 'AI Fluency Foundations · Recap', text: 'One recap ties it together: the four habits and the four properties mirror each other', question: 'What do we carry into the rest of the course?' },
+          { kind: 'prose', size: 'lg', md: 'A full recap of the tier — the [[4Ds and the four properties|mirror]], and how each half explains the other. Watch it to lock the shape in before the ideas turn concrete in the agent.' },
+          { kind: 'video', src: 'https://www.youtube.com/watch?v=bgU_S3KdAfA', title: 'AI Fluency Foundations — full recap of the 4D Framework and the four properties', caption: 'NotebookLM Video Overview — the whole tier in one pass' },
+          { kind: 'list', marker: 'check', items: [
+            'Run the **4D loop** — delegate, describe, discern, own it — on any AI task.',
+            'Locate a task on the **four dials** before deciding how far to trust the answer.',
+            'Recognise the **mitigations** — search, memory, retrieval, code — as the tools we build next.',
+          ] },
         ],
       },
     ],

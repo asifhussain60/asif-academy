@@ -56,7 +56,7 @@ export function ModelLineupDiagram({ step }: DiagramProps) {
         const x = X0 + i * (CARD_W + GAP);
         const lit = sel === i;
         return (
-          <RevealGroup key={m.key} show={sel >= i} dim={0.25}>
+          <RevealGroup key={m.key} show dim={0.25}>
             <g transform={`translate(${x}, ${TOP})`} onClick={() => goToStep(i)} style={{ cursor: 'pointer' }}>
               <motion.rect
                 width={CARD_W}

@@ -18,6 +18,7 @@ import { SkillTriggerDiagram } from './SkillTriggerDiagram';
 import { SdkVsInteractiveDiagram } from './SdkVsInteractiveDiagram';
 import { PermissionModesDiagram } from './PermissionModesDiagram';
 import { SettingsScopeDiagram } from './SettingsScopeDiagram';
+import { AllowVsDenyDiagram } from './AllowVsDenyDiagram';
 
 /**
  * Diagram components owned by the claude-code tutorial. Registered into the runtime registry at
@@ -41,6 +42,7 @@ export const claudeCodeDiagrams: Record<string, ComponentType<DiagramProps>> = {
   'sdk-vs-interactive': SdkVsInteractiveDiagram,
   'permission-modes': PermissionModesDiagram,
   'settings-scope': SettingsScopeDiagram,
+  'allow-vs-deny': AllowVsDenyDiagram,
   // Phase C stubs
   'decision-matrix': PlaceholderDiagram,
   'mcp-client-server': PlaceholderDiagram,

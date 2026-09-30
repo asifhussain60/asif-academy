@@ -26,6 +26,9 @@ export const claudeCodeTutorial: Tutorial = {
   id: 'claude-code',
   title: 'Claude Code, Taught',
   blurb: 'From the agentic loop to building real skills, agents, and connectors.',
+  // Self-study course: narration is rendered inline (learn mode), so the whole thing is teachable
+  // by reading the site alone. Other/future tutorials omit this and stay presenter-style.
+  mode: 'learn',
   modules: curriculum,
   lessons,
   images,

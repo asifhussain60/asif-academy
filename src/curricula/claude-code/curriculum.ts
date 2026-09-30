@@ -60,4 +60,10 @@ export const curriculum: Module[] = [
     blurb: 'Two end-to-end builds, then the Agent SDK.',
     lessonIds: ['code-review-skill', 'research-subagent', 'agent-sdk-intro'],
   },
+  {
+    id: '00-fluency-foundations',
+    title: 'AI Fluency Foundations',
+    blurb: 'NotebookLM study pack — the 4D habits and AI’s four capability/limitation properties.',
+    lessonIds: ['fluency-foundations'],
+  },
 ];

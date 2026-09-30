@@ -2,15 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 import type { Slide } from '@/engine/types';
 import { renderInline } from '@/detail/renderInline';
-
-/** Normalize any talkingPoints shape to steps-of-bullets ([step][bullet]). */
-function toSteps(tp: string | string[] | string[][] | undefined): string[][] {
-  if (!tp) return [];
-  if (typeof tp === 'string') return [[tp]];
-  if (tp.length === 0) return [];
-  if (Array.isArray(tp[0])) return tp as string[][];
-  return (tp as string[]).map((s) => [s]);
-}
+import { toSteps } from '@/engine/talkingPoints';
 
 /**
  * In-deck talking-points panel — the same private read-aloud script the /present window shows,

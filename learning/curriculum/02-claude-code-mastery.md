@@ -33,6 +33,11 @@ that specific output to just those documents instead of the whole notebook.
 
 ## Prompts to enter in Studio's "Customise" dialog
 
+The **Infographic** dialog has extra controls beyond the description box —
+Language, Orientation, Visual style, and Level of detail. Recommended
+settings are given with each infographic below; leave Language on
+**English**.
+
 **Session 1 — Mind Map**
 > Show how Claude Code 101, Claude Code in Action, and Introduction to Claude Cowork relate — the Explore/Plan/Code/Commit workflow versus Cowork's delegation model, and where they overlap.
 
@@ -43,13 +48,17 @@ that specific output to just those documents instead of the whole notebook.
 > Create a slide deck covering CLAUDE.md and @ mentions, Planning Mode versus effort level, custom commands, and what the Agent SDK is for.
 
 **Session 2 — Infographic**
-> Create an infographic of the Claude Code hook events — PreToolUse, PostToolUse, Notification, Stop, SubagentStop, PreCompact, UserPromptSubmit, SessionStart, SessionEnd — showing what triggers each one and whether it can block the action.
+> Orientation: **Landscape** (nine events need a wide row-by-row table). Visual style: **Sketch note**. Level of detail: **Detailed** (all nine events must appear — this is a reference table, not a simplified poster).
+>
+> Describe the infographic: Create an infographic of the Claude Code hook events — PreToolUse, PostToolUse, Notification, Stop, SubagentStop, PreCompact, UserPromptSubmit, SessionStart, SessionEnd — showing what triggers each one and whether it can block the action.
 
 **Session 3 — Slide deck**
 > Create a slide deck on the four Cowork "make it yours" building blocks — global instructions, projects, skills, plugins — showing what each one teaches Cowork and what that unlocks.
 
 **Session 3 — Infographic**
-> Create an infographic comparing Chat vs. Cowork vs. Code — what each mode is best for and where it runs.
+> Orientation: **Landscape** (three modes compare side by side as columns). Visual style: **Sketch note**. Level of detail: **Standard** (a three-column comparison stays readable without every sub-detail from the source doc).
+>
+> Describe the infographic: Create an infographic comparing Chat vs. Cowork vs. Code — what each mode is best for and where it runs.
 
 **Session 4 — Video Overview**
 > Recap this notebook's full arc — Claude Code 101's core workflow, Claude Code in Action's deeper customization, and Claude Cowork's delegation model.

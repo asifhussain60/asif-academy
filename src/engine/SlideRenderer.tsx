@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 import type { Slide, SlideCtx } from './types';
 import { BlockRenderer } from './BlockRenderer';
+import { LessonNarration } from './LessonNarration';
 
 const BG: Record<string, string> = {
   default: '',
@@ -19,7 +20,7 @@ const LAYOUT_WRAP: Record<string, string> = {
   'full-bleed': 'max-w-none w-full',
 };
 
-export function SlideRenderer({ slide, ctx }: { slide: Slide; ctx: SlideCtx }) {
+export function SlideRenderer({ slide, ctx, learn }: { slide: Slide; ctx: SlideCtx; learn?: boolean }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Scroll to top on every navigation — slide change OR step change.
@@ -42,6 +43,7 @@ export function SlideRenderer({ slide, ctx }: { slide: Slide; ctx: SlideCtx }) {
         {slide.blocks.map((block, i) => (
           <BlockRenderer key={i} block={block} ctx={ctx} />
         ))}
+        {learn && <LessonNarration slide={slide} step={ctx.step} />}
       </motion.div>
     </div>
   );

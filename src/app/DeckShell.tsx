@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-import { ADMIN_EMAIL } from '@/auth/admin';
-import { useHasRole } from '@/auth/useRoles';
 import type { Tutorial, SlideCtx } from '@/engine/types';
 import {
   firstPosition,
@@ -32,9 +29,11 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
   const params = useParams();
   const { theme, qaOpen, notesOpen, visited } = useDeck();
   const store = useDeck();
-  const { user } = useAuth0();
-  const isAdmin = user?.email === ADMIN_EMAIL;
-  const isPresenter = isAdmin || useHasRole('presenter');
+  // Auth0 removed — the site is public and presenter tools are open to everyone.
+  const isAdmin = true;
+  const isPresenter = true;
+  // Self-study courses render the narration inline (see LessonNarration) and drop the side panel.
+  const learn = tutorial.mode === 'learn';
 
   const pos: Position = {
     moduleId: params.moduleId ?? '',
@@ -185,10 +184,10 @@ export function DeckShell({ tutorial }: { tutorial: Tutorial }) {
           )}
           <main className="relative min-h-0 flex-1">
             <DeckControlsProvider value={{ goToStep }}>
-              <SlideRenderer slide={slide} ctx={ctx} />
+              <SlideRenderer slide={slide} ctx={ctx} learn={learn} />
             </DeckControlsProvider>
             <QaPanel faqs={slide.faqs} open={qaOpen} />
-            {isPresenter && <TalkingPointsPanel slide={slide} open={notesOpen} step={step} onGoToStep={goToStep} />}
+            {isPresenter && !learn && <TalkingPointsPanel slide={slide} open={notesOpen} step={step} onGoToStep={goToStep} />}
           </main>
           <Footer
             slideNo={globalSlideNumber(tutorial, pos)}

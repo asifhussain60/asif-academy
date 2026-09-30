@@ -36,6 +36,11 @@ that specific output to just those documents instead of the whole notebook.
 
 ## Prompts to enter in Studio's "Customise" dialog
 
+The **Infographic** dialog has extra controls beyond the description box —
+Language, Orientation, Visual style, and Level of detail. Recommended
+settings are given with each infographic below; leave Language on
+**English**.
+
 **Session 1 — Mind Map**
 > Show how Agent Skills, Subagents, and MCP (introduction and advanced) relate as three different ways of extending Claude Code beyond a single conversation.
 
@@ -46,10 +51,14 @@ that specific output to just those documents instead of the whole notebook.
 > Create a slide deck on the four traits that make a subagent reliable — a specific description, a defined output format, an obstacles-encountered section, and deliberately limited tool access — plus the three anti-patterns to avoid.
 
 **Session 3 — Infographic**
-> Create an infographic of MCP's three primitives — Tools, Resources, and Prompts — showing who controls each one (the model, the application, or the user) and what each is best used for.
+> Orientation: **Landscape** (three primitives compare side by side as columns). Visual style: **Sketch note**. Level of detail: **Standard**.
+>
+> Describe the infographic: Create an infographic of MCP's three primitives — Tools, Resources, and Prompts — showing who controls each one (the model, the application, or the user) and what each is best used for.
 
 **Session 4 — Infographic**
-> Create an infographic comparing MCP transport choices — stdio, StreamableHTTP with both flags false, StreamableHTTP with stateless_http true, and StreamableHTTP with json_response true — and when to choose each.
+> Orientation: **Landscape** (four transport configurations compare side by side). Visual style: **Sketch note**. Level of detail: **Detailed** (each configuration's specific tradeoffs — sampling, progress, scaling — need to survive, not just a one-line summary).
+>
+> Describe the infographic: Create an infographic comparing MCP transport choices — stdio, StreamableHTTP with both flags false, StreamableHTTP with stateless_http true, and StreamableHTTP with json_response true — and when to choose each.
 
 **Session 5 — Video Overview**
 > Recap Agent Skills, Subagents, and MCP (both the introduction and advanced topics) as three complementary ways to extend what Claude Code can do.

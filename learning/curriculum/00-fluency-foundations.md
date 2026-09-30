@@ -38,6 +38,11 @@ or instruction before generating. Paste the matching prompt below rather
 than leaving it blank — a generic generation tends to skim everything at
 the same depth instead of emphasizing what this session is actually about.
 
+The **Infographic** dialog has three extra controls beyond the
+description box — Language, Orientation, Visual style, and Level of
+detail. Recommended settings are given per infographic below; leave
+Language on **English**.
+
 **Session 1 — Mind Map**
 > Focus this Mind Map on how the AI Fluency Framework's 4Ds (Delegation, Description, Discernment, Diligence) relate to the four generative-AI properties (Next Token Prediction, Knowledge, Working Memory, Steerability) — show which property each D is most responding to.
 
@@ -45,7 +50,9 @@ the same depth instead of emphasizing what this session is actually about.
 > Create a slide deck with one slide per D — Delegation, Description, Discernment, Diligence — plus a slide on the three ways of engaging with AI (Automation, Augmentation, Agency). Keep each slide to the core definition and one practical example.
 
 **Session 3 — Infographic**
-> Create an infographic showing the four-property capability-to-limitation continuum: Next Token Prediction, Knowledge, Working Memory, Steerability. For each property show what it enables, where it characteristically fails, and the product features that push the limitation further out.
+> Orientation: **Landscape** (four properties compare side by side). Visual style: **Sketch note** (technical concept content, not a photo-realistic subject). Level of detail: **Detailed** (every property needs its enables/fails/mitigations row kept, not simplified away).
+>
+> Describe the infographic: Create an infographic showing the four-property capability-to-limitation continuum: Next Token Prediction, Knowledge, Working Memory, Steerability. For each property show what it enables, where it characteristically fails, and the product features that push the limitation further out.
 
 **Session 4 — Video Overview**
 > Give a full recap of this notebook covering the 4D Framework and the four generative-AI properties, and how they mirror each other.

@@ -8,6 +8,8 @@ import { List } from '@/blocks/List';
 import { Tiles } from '@/blocks/Tiles';
 import { Spacer } from '@/blocks/Spacer';
 import { ImageBlock } from '@/blocks/ImageBlock';
+import { VideoBlock } from '@/blocks/VideoBlock';
+import { EmbedBlock } from '@/blocks/EmbedBlock';
 import { DiagramBlock } from '@/blocks/DiagramBlock';
 import { WidgetBlock } from '@/blocks/WidgetBlock';
 
@@ -37,6 +39,10 @@ export function BlockRenderer({ block, ctx }: { block: Block; ctx: SlideCtx }) {
       );
     case 'image':
       return <ImageBlock src={block.src} alt={block.alt} caption={block.caption} size={block.size} />;
+    case 'video':
+      return <VideoBlock src={block.src} title={block.title} caption={block.caption} />;
+    case 'embed':
+      return <EmbedBlock src={block.src} title={block.title} caption={block.caption} aspect={block.aspect} />;
     case 'diagram':
       return <DiagramBlock diagramId={block.diagramId} params={block.params} caption={block.caption} step={ctx.step} />;
     case 'widget':

@@ -43,6 +43,11 @@ actually separates "first half" from "second half" — say explicitly what
 to leave out, not just what to cover, or NotebookLM will pull from the
 whole file regardless of which half you just read.
 
+The **Infographic** dialog has extra controls beyond the description box —
+Language, Orientation, Visual style, and Level of detail. The recommended
+settings are given with that infographic below; leave Language on
+**English**.
+
 **Session 1 — Mind Map**
 > Show how Claude Platform 101 and Building with the Claude API relate — platform fundamentals versus the deeper techniques built on top of them.
 
@@ -56,7 +61,9 @@ whole file regardless of which half you just read.
 > Create a slide deck covering only: the prompt-evaluation workflow, structuring prompts with XML tags, and the RAG pipeline — chunking strategies, embeddings and semantic search, then BM25 and hybrid search. Do not cover images, PDFs, citations, or workflow patterns.
 
 **Session 4 — Infographic**
-> Create an infographic covering only: workflows versus agents as an architectural choice, and the three workflow patterns — chaining, routing, parallelization — compared side by side. Do not cover RAG, chunking, images, or citations.
+> Orientation: **Landscape** (workflows-vs-agents plus three patterns all compare side by side). Visual style: **Sketch note**. Level of detail: **Detailed** (each workflow pattern's specific mechanism needs to survive, not just its name).
+>
+> Describe the infographic: Create an infographic covering only: workflows versus agents as an architectural choice, and the three workflow patterns — chaining, routing, parallelization — compared side by side. Do not cover RAG, chunking, images, or citations.
 
 **Session 5 — Video Overview**
 > Recap the full arc from Claude Platform 101 through Building with the Claude API — API basics, the agent loop, context management, RAG, and workflow patterns.

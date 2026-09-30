@@ -44,6 +44,11 @@ wherever "All" is listed.
 
 ## Prompts to enter in Studio's "Customise" dialog
 
+The **Infographic** dialog has extra controls beyond the description box —
+Language, Orientation, Visual style, and Level of detail. Recommended
+settings are given with that infographic below; leave Language on
+**English**.
+
 **Session 1 — Mind Map**
 > Show how Chat, Cowork, and Code relate to each other, and how the three-part prompting framework (setting the stage, defining the task, specifying rules) applies across all three.
 
@@ -60,7 +65,9 @@ wherever "All" is listed.
 > Create a slide deck of Claude use cases organized by role — sales, marketing, finance, HR, legal, research — plus the non-claude.ai surfaces: Claude Code, @Claude, Claude Design, Claude for Microsoft 365, and Claude in Chrome.
 
 **Session 5 — Infographic**
-> Turn this glossary and feature-selection cheatsheet into a single visual reference card — one column of terms with plain-English definitions, one column of "when to use it."
+> Orientation: **Portrait** (this is a printable reference card, not a wide comparison). Visual style: **Sketch note**. Level of detail: **Detailed** (every glossary term needs to survive — this is meant to replace the cheatsheet, not tease it).
+>
+> Describe the infographic: Turn this glossary and feature-selection cheatsheet into a single visual reference card — one column of terms with plain-English definitions, one column of "when to use it."
 
 **Session 6 — Video Overview**
 > Recap this whole notebook — Chat/Cowork/Code, Projects/Artifacts/Skills, Connectors/Enterprise Search/Research mode, and role-based use cases.
